@@ -1,0 +1,17 @@
+.jumbotron {
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-text {
+    padding: 1rem;
+}
+
+.form-control {
+    width: 98%;
+}

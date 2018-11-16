@@ -26,3 +26,8 @@
     background-color: #cc4444;
     color: white;
 }
+
+.card-header {
+    background-color: rgba(35, 101, 220, 0.67);
+    color: white;
+}

@@ -1,5 +1,20 @@
 //********** FUNCTIONS
 
+//Want to display current time and have it auto-refresh every minute
+var datetime = null,
+        date = null;
+
+var update = function () {
+    date = moment(new Date())
+    datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+};
+
+$(document).ready(function(){
+    datetime = $('#current-time')
+    update();
+    setInterval(update, 1000);
+});
+
 //this is what we are re-creating with js
 /* <tr>
     <th scope="col" class="colName">C Line</th>

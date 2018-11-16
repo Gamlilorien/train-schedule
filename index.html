@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <title>Time Sheet</title>
+    <title>Train Schedule</title>
 </head>
 
 <body>
@@ -37,23 +36,18 @@
                                     <th scope="col">Minutes Away</th>
                                   </tr>
                                 </thead>
-                                <tbody id="employee-content">
+                                <tbody id="train-content">
                                     <!-- Start Table body, add code from JS below... -->
                                   <tr>
-                                    <th scope="col" id="row-1" class="colName">Joe Test</th>
-                                    <td scope="col" class="colRole">Boss</td>
-                                    <td scope="col" class="colStartDate">11/2/2016</td>
-                                    <td scope="col" class="colMonths">12</td>
-                                    <td scope="col" class="colRate">22</td>
+                                    <th scope="col" class="colName">C Line</th>
+                                    <td scope="col" class="colDestination">Union Station</td>
+                                    <td scope="col" class="colFrequency">30</td>
+                                    <td scope="col" class="colNxtArrival">05:12</td>
+                                    <td scope="col" class="colMinAway">18</td>
                                   </tr>
                                   <!-- End Table Body -->
                                 </tbody>
                         </table>
-
-                        <h4 id="name-display">Name: </h4>
-                        <h4 id="role-display">Role: </h4>
-                        <h4 id="startDate-display">Start Date: </h4>
-                        <h4 id="monthlyRate-display">Monthly Rate: </h4>
                     </div>
                 </div>
           </div>
@@ -80,7 +74,7 @@
                             <br>
                             <input class="ml-2 form-control" id="frequency-input" type="text" placeholder="Minutes">
                             <br>
-                            <input class="btn-success mb-1 ml-2 mt-1 pb-1" id="add-employee" type="submit" value="Submit">
+                            <input class="btn-success mb-1 ml-2 mt-1 pb-1" id="add-train" type="submit" value="Submit">
                         </form>
                     </div>
                 </div>

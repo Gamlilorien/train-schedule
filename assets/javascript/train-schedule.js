@@ -1,42 +1,38 @@
 //********** FUNCTIONS
 
 //this is what we are re-creating with js
-//<tr>
-    //<th scope="row" id="row-1" class="colName">Joe Test</th>
-    // <td class="colRole">Boss</td>
-    // <td class="colStartDate">11/2/2016</td>
-    // <td class="colMonths">12</td>
-    // <td class="colRate">22</td>
-    // <td class="colBilled">3000</td>
-//</tr>
+/* <tr>
+    <th scope="col" class="colName">C Line</th>
+    <td scope="col" class="colDestination">Union Station</td>
+    <td scope="col" class="colFrequency">30</td>
+    <td scope="col" class="colNxtArrival">05:12</td>
+    <td scope="col" class="colMinAway">18</td>
+</tr> */
 
-function addEmployee() {
+function addTrain() {
     //we need to dynamically generate the table rows from the firebase database and add to our index page...
     var newRow = $("<tr>").append(
-        $("<th>").attr({"scope":"row", "id": "row-"[i]}).text(),
-        $("<td>").text(),
-        $("<td>").text(),
-        $("<td>").text(),
-        $("<td>").text(),
-        $("<td>").text(),
+        $("<th>").attr({"scope":"col", "class": "colName"}).text(sv.name),
+        $("<td>").attr({"scope":"col", "class": "colDestination"}).text(sv.destination),
+        $("<td>").attr({"scope":"col", "class": "colFrequency"}).text(sv.frequency),
+        $("<td>").attr({"scope":"col", "class": "colNxtArrival"}).text(),
+        $("<td>").attr({"scope":"col", "class": "colMinAway"}).text()
     )
-
+    
+    $("#train-content").append(newRow);
 };
-
-
-
 
 
 //******* Firebase
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyB9-h1SlSEHYVvQJTKPpJYkw0-PWAqhEZs",
-    authDomain: "timesheet-5bc14.firebaseapp.com",
-    databaseURL: "https://timesheet-5bc14.firebaseio.com",
-    projectId: "timesheet-5bc14",
-    storageBucket: "timesheet-5bc14.appspot.com",
-    messagingSenderId: "955023597019"
+    apiKey: "AIzaSyDppiSRkOIEjks8nCfAb1Sihrf-jjvyhmE",
+    authDomain: "train-schedule-8ab48.firebaseapp.com",
+    databaseURL: "https://train-schedule-8ab48.firebaseio.com",
+    projectId: "train-schedule-8ab48",
+    storageBucket: "",
+    messagingSenderId: "1009081483106"
   };
   firebase.initializeApp(config);
 
@@ -45,25 +41,25 @@ console.log(database);
 
 //Initial Values 
 var name = "";
-var role = "";
-var startDate = "";
-var monthlyRate = 0;
+var destination = "";
+var startTime = "";
+var frequency = 0;
 
-$("#add-employee").on("click", function (event) {
+$("#add-train").on("click", function (event) {
     event.preventDefault();
 
     // Grabbed values from text boxes
     name = $("#name-input").val().trim();
-    role = $("#role-input").val().trim();
-    startDate = moment($("#startDate").val().trim(),"MM/DD/YYYY").format("x");
-    monthlyRate = $("#monthlyRate").val().trim();
+    destination = $("#destination-input").val().trim();
+    startTime = moment($("#start-input").val().trim(),"HH:MM").format("x");
+    frequency = $("#frequency-input").val().trim();
 
     // Code for handling the push
     database.ref().push({
         name: name,
-        role: role,
-        startDate: startDate,
-        monthlyRate: monthlyRate,
+        destination: destination,
+        startTime: startTime,
+        frequency: frequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
 
     });
@@ -76,15 +72,12 @@ database.ref().on("child_added", function (snapshot) {
 
     // Console.loging the last user's data
     console.log(sv.name);
-    console.log(sv.role);
-    console.log(sv.startDate);
-    console.log(sv.monthlyRate);
+    console.log(sv.destination);
+    console.log(sv.startTime);
+    console.log(sv.frequency);
 
     // Change the HTML to reflect
-    $("#name-display").text(sv.name);
-    $("#role-display").text(sv.role);
-    $("#startDate-display").text(sv.startDate);
-    $("#monthlyRate-display").text(sv.monthlyRate);
+    addTrain(); 
 
     // Handle the errors
 }, function (errorObject) {

@@ -10,13 +10,35 @@
 </tr> */
 
 function addTrain(sv) {
+    
+    var firstTime = sv.startTime
+    var tFrequency = sv.frequency;
+    
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    
+    // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    
+    // Minute Until Train
+    var tMinAway = tFrequency - tRemainder;
+    
+    // Next Train
+    var nxtTrain = moment().add(tMinAway, "minutes");
     //we need to dynamically generate the table rows from the firebase database and add to our index page...
     var newRow = $("<tr>").append(
         $("<th>").attr({"scope":"col", "class": "colName"}).text(sv.name),
         $("<td>").attr({"scope":"col", "class": "colDestination"}).text(sv.destination),
-        $("<td>").attr({"scope":"col", "class": "colFrequency"}).text(sv.frequency),
-        $("<td>").attr({"scope":"col", "class": "colNxtArrival"}).text(),
-        $("<td>").attr({"scope":"col", "class": "colMinAway"}).text()
+        $("<td>").attr({"scope":"col", "class": "colFrequency"}).text(tFrequency),
+        $("<td>").attr({"scope":"col", "class": "colNxtTrain"}).text(moment(nxtTrain).format("hh:mm")),
+        $("<td>").attr({"scope":"col", "class": "colMinAway"}).text(tMinAway)
     )
     
     $("#train-content").append(newRow);
@@ -51,7 +73,7 @@ $("#add-train").on("click", function (event) {
     // Grabbed values from text boxes
     name = $("#name-input").val().trim();
     destination = $("#destination-input").val().trim();
-    startTime = moment($("#start-input").val().trim(),"HHmm").format("x");
+    startTime = moment($("#start-input").val().trim(),"HH:mm").format("HH:mm");
     frequency = $("#frequency-input").val().trim();
 
     // Code for handling the push
@@ -64,6 +86,12 @@ $("#add-train").on("click", function (event) {
 
     });
 
+    //don't forget to clear the form input fields!
+    $("#name-input").val();
+    $("#destination-input").val();
+    $("#start-input").val();
+    $("#frequency-input").val();
+
 });
 
 database.ref().on("child_added", function (snapshot) {
@@ -71,10 +99,10 @@ database.ref().on("child_added", function (snapshot) {
     var sv = snapshot.val();
 
     // Console.loging the last user's data
-    console.log(sv.name);
-    console.log(sv.destination);
-    console.log(sv.startTime);
-    console.log(sv.frequency);
+    //console.log(sv.name);
+    //console.log(sv.destination);
+    //console.log(sv.startTime);
+    //console.log(sv.frequency);
 
     // Change the HTML to reflect
     addTrain(sv); 

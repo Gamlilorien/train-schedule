@@ -1,7 +1,9 @@
 .jumbotron {
-    background-color: black;
+    background-color: #cc4444;
     text-align: center;
     color: white;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 .card-body {
@@ -14,4 +16,13 @@
 
 .form-control {
     width: 98%;
+}
+
+.colFrequency, .colNxtTrain, .colMinAway, .center {
+    text-align: center;
+}
+
+.btn {
+    background-color: #cc4444;
+    color: white;
 }

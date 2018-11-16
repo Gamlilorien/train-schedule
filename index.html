@@ -16,9 +16,12 @@
 
 <div class="container">
         <div class="jumbotron">
-                <h1 class="display-4">RTD Light-Rail Train Schedule</h1>
+                <h1 class="display-4">Rail Train Schedule</h1>
                 <p class="lead">
                     A Real-time Train Schedule Calculator
+                </p>
+                <p class="lead">
+                    Current Time: <span id="current-time"></span>
                 </p>
         </div>
 
@@ -31,9 +34,9 @@
                                   <tr>
                                     <th scope="col">Train Name</th>
                                     <th scope="col">Destination</th>
-                                    <th scope="col">Frequency (min)</th>
-                                    <th scope="col">Next Arrival</th>
-                                    <th scope="col">Minutes Away</th>
+                                    <th scope="col" class="center">Frequency (min)</th>
+                                    <th scope="col" class="center">Next Arrival</th>
+                                    <th scope="col" class="center">Minutes Away</th>
                                   </tr>
                                 </thead>
                                 <tbody id="train-content">
@@ -68,7 +71,7 @@
                             <br>
                             <input class="ml-2 form-control" id="frequency-input" type="text" placeholder="Minutes">
                             <br>
-                            <input class="btn-success mb-1 ml-2 mt-1 pb-1" id="add-train" type="submit" value="Submit">
+                            <input class="btn mb-1 ml-2 mt-1 pb-1" id="add-train" type="submit" value="Submit">
                         </form>
                     </div>
                 </div>

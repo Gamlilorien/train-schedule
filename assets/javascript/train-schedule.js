@@ -9,7 +9,7 @@
     <td scope="col" class="colMinAway">18</td>
 </tr> */
 
-function addTrain() {
+function addTrain(sv) {
     //we need to dynamically generate the table rows from the firebase database and add to our index page...
     var newRow = $("<tr>").append(
         $("<th>").attr({"scope":"col", "class": "colName"}).text(sv.name),
@@ -51,7 +51,7 @@ $("#add-train").on("click", function (event) {
     // Grabbed values from text boxes
     name = $("#name-input").val().trim();
     destination = $("#destination-input").val().trim();
-    startTime = moment($("#start-input").val().trim(),"HH:MM").format("x");
+    startTime = moment($("#start-input").val().trim(),"HHmm").format("x");
     frequency = $("#frequency-input").val().trim();
 
     // Code for handling the push
@@ -77,7 +77,7 @@ database.ref().on("child_added", function (snapshot) {
     console.log(sv.frequency);
 
     // Change the HTML to reflect
-    addTrain(); 
+    addTrain(sv); 
 
     // Handle the errors
 }, function (errorObject) {

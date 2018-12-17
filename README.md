@@ -1,4 +1,4 @@
-# train-schedule
+# Train Schedule
 ![train-schedule](assets/images/train-schedule.png)
 
 ### Overview
